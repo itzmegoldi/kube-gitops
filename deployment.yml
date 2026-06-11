@@ -19,3 +19,8 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: vpn-config
+            - secretRef:
+                name: vpn-secret

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vpn-config
+  namespace: vpn
+
+data:
