@@ -13,6 +13,8 @@ spec:
       labels:
         app: vpn
     spec:
+      imagePullSecrets:
+        - name: ghcr-secret
       containers:
         - name: vpn
           image: ghcr.io/itzmegoldi/vpn-api:latest
