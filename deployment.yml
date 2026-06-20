@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: vpn
-          image: ghcr.io/itzmegoldi/vpn:latest
+          image: ghcr.io/itzmegoldi/vpn-api:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
