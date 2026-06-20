@@ -6,8 +6,8 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: http://192.168.31.13
-      http:
+    # - host: http://192.168.31.13
+    - http:
         paths:
           - path: /
             pathType: Prefix
