@@ -16,4 +16,3 @@ spec:
                 name: vpn
                 port:
                   number: 80
-                  targetPort: 8000
