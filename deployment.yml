@@ -26,3 +26,12 @@ spec:
                 name: vpn-config
             - secretRef:
                 name: vpn-secret
+      containers:
+        - name: vpn-worker
+          image: ghcr.io/itzmegoldi/vpn-worker:latest
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: vpn-config
+            - secretRef:
+                name: vpn-secret
