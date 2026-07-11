@@ -17,7 +17,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: vpn-worker
-          image: ghcr.io/itzmegoldi/vpn-worker:latest
+          image: ghcr.io/itzmegoldi/vpn-worker:3bae6215dea4d5e1ba5b389fa43b487108b37a41
           imagePullPolicy: Always
           envFrom:
             - configMapRef:

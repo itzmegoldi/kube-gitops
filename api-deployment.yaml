@@ -17,7 +17,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: vpn-api
-          image: ghcr.io/itzmegoldi/vpn-api:latest
+          image: ghcr.io/itzmegoldi/vpn-api:3bae6215dea4d5e1ba5b389fa43b487108b37a41
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
