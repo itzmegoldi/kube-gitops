@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: vpn
+  name: vpn-api
   namespace: vpn
 spec:
   selector:
-    app: vpn
+    app: vpn-api
   ports:
     - port: 80
       targetPort: 8080
