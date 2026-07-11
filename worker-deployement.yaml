@@ -1,26 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vpn
+  name: vpn-worker
   namespace: vpn
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: vpn
+      app: vpn-worker
   template:
     metadata:
       labels:
-        app: vpn
+        app: vpn-worker
     spec:
       imagePullSecrets:
         - name: ghcr-secret
       containers:
-        - name: vpn
-          image: ghcr.io/itzmegoldi/vpn-api:latest
+        - name: vpn-worker
+          image: ghcr.io/itzmegoldi/vpn-worker:latest
           imagePullPolicy: Always
-          ports:
-            - containerPort: 8000
           envFrom:
             - configMapRef:
                 name: vpn-config
