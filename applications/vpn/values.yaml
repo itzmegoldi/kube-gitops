@@ -1,0 +1,91 @@
+# Default values for the VPN application chart.
+
+# Helm normally creates the release namespace with `helm install --create-namespace`.
+# Set this to true only when the chart should manage the cluster-scoped Namespace resource.
+namespace:
+  create: false
+  name: vpn
+
+nameOverride: ""
+fullnameOverride: "vpn-api"
+
+# No dedicated service account, HPA, or Gateway API route is present in the source manifests.
+serviceAccount:
+  create: false
+autoscaling:
+  enabled: false
+httpRoute:
+  enabled: false
+
+imagePullSecrets:
+  - name: ghcr-secret
+
+configMap:
+  name: vpn-config
+  data:
+    APP_ENV: prod
+    SERVER_HOST: "0.0.0.0"
+    SERVER_PORT: "8000"
+
+# The Secret is intentionally not created by this chart. Create vpn-secret separately.
+existingSecret: vpn-secret
+
+api:
+  replicaCount: 1
+  image:
+    repository: ghcr.io/itzmegoldi/vpn-api
+    tag: 3bae6215dea4d5e1ba5b389fa43b487108b37a41
+    pullPolicy: Always
+  containerPort: 8000
+  probes:
+    readiness:
+      httpGet:
+        path: /health
+        port: 8080
+      initialDelaySeconds: 5
+      periodSeconds: 10
+      timeoutSeconds: 2
+      failureThreshold: 3
+    liveness:
+      httpGet:
+        path: /health
+        port: 8080
+      initialDelaySeconds: 15
+      periodSeconds: 20
+      timeoutSeconds: 2
+      failureThreshold: 3
+  resources: {}
+
+worker:
+  enabled: true
+  name: vpn-worker
+  replicaCount: 1
+  image:
+    repository: ghcr.io/itzmegoldi/vpn-worker
+    tag: 3bae6215dea4d5e1ba5b389fa43b487108b37a41
+    pullPolicy: Always
+  resources: {}
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations: {}
+  hosts:
+    - host: ""
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+podAnnotations: {}
+podLabels: {}
+podSecurityContext: {}
+securityContext: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
