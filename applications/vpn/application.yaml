@@ -13,6 +13,10 @@ spec:
     targetRevision: main
     path: applications/vpn
 
+    helm:
+      valueFiles:
+        - values.yaml
+
   destination:
     server: https://kubernetes.default.svc
     namespace: cert-manager
