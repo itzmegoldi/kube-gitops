@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/itzmegoldi/kube-gitops
     targetRevision: main
-    path: infrastructure/cert-manager
+    path: applications/vpn
 
   destination:
     server: https://kubernetes.default.svc
