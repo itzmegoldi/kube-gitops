@@ -1,0 +1,12 @@
+resources:
+  - ../../infrastructure/namespaces
+
+  - ../../infrastructure/ingress-nginx/application.yaml
+
+  - ../../infrastructure/cert-manager/application.yaml
+
+  - ../../infrastructure/vault/application.yaml
+
+  - ../../infrastructure/external-secrets/application.yaml
+
+  - ../../infrastructure/monitoring/application.yaml
