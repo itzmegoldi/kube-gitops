@@ -12,9 +12,9 @@ spec:
     repoURL: https://github.com/itzmegoldi/kube-gitops
     path: infrastructure/monitoring
 
-    helm:
-      valueFiles:
-        - values.yaml
+    # helm:
+    #   valueFiles:
+    #     - values.yaml
 
   destination:
     server: https://kubernetes.default.svc
