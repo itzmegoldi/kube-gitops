@@ -4,13 +4,12 @@ kind: Application
 
 metadata:
   name: monitoring
-
   namespace: argocd
 
 spec:
+  project: default
   source:
     repoURL: https://github.com/itzmegoldi/kube-gitops
-
     path: infrastructure/monitoring
 
   destination:
